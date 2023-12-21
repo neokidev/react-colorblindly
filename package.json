@@ -1,0 +1,56 @@
+{
+  "name": "react-colorblindly",
+  "version": "0.0.0",
+  "description": "",
+  "keywords": [
+    "plugin"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ot07/react-colorblindly.git"
+  },
+  "homepage": "https://github.com/ot07/react-colorblindly#readme",
+  "bugs": {
+    "url": "https://github.com/ot07/react-colorblindly/issues"
+  },
+  "license": "MIT",
+  "author": "ot07",
+  "main": "dist/index.js",
+  "module": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "_build": "bun run build.ts",
+    "_clean": "rimraf dist",
+    "build": "bun run _clean && bun run _build",
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint . --ext .ts,.tsx --cache",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "prepare": "bun run build"
+  },
+  "dependencies": {
+    "react": "^18.2.0"
+  },
+  "devDependencies": {
+    "@types/react": "^18.2.45",
+    "bun-plugin-dts": "^0.2.1",
+    "bun-types": "^1.0.18-1",
+    "eslint": "^8.56.0",
+    "eslint-config-airbnb": "^19.0.4",
+    "eslint-config-airbnb-typescript": "^17.1.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-import": "^2.29.1",
+    "eslint-plugin-jsx-a11y": "^6.8.0",
+    "eslint-plugin-react": "^7.33.2",
+    "prettier": "^3.1.1",
+    "prettier-plugin-organize-imports": "^3.2.4",
+    "rimraf": "^5.0.5",
+    "typescript": "^5.3.3"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
