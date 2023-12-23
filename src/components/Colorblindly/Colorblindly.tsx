@@ -2,7 +2,10 @@ import { ReactNode } from 'react'
 import { ColorblindlyKind } from '~/types'
 import { randomId } from '~/utils'
 
-const filterMatrixValues: Record<ColorblindlyKind, string> = {
+const filterMatrixValues: Record<
+  Exclude<ColorblindlyKind, 'normal'>,
+  string
+> = {
   achromatomaly:
     '0.618,0.320,0.062,0,0 0.163,0.775,0.062,0,0 0.163,0.320,0.516,0,0 0,0,0,1,0',
   achromatopsia:
@@ -31,13 +34,15 @@ export function Colorblindly({ children, kind }: ColorblindlyProps) {
 
   return (
     <>
-      <svg style={{ width: 0, height: 0, position: 'absolute' }}>
-        <defs>
-          <filter id={filterId}>
-            <feColorMatrix type="matrix" values={filterMatrixValues[kind]} />
-          </filter>
-        </defs>
-      </svg>
+      {kind !== 'normal' && (
+        <svg style={{ width: 0, height: 0, position: 'absolute' }}>
+          <defs>
+            <filter id={filterId}>
+              <feColorMatrix type="matrix" values={filterMatrixValues[kind]} />
+            </filter>
+          </defs>
+        </svg>
+      )}
       <div style={{ filter: `url(#${filterId})` }}>{children}</div>
     </>
   )

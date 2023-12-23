@@ -32,10 +32,12 @@
     "prepare": "bun run build"
   },
   "dependencies": {
+    "lucide-react": "^0.300.0",
     "react": "^18.2.0"
   },
   "devDependencies": {
     "@types/react": "^18.2.45",
+    "@types/web": "^0.0.130",
     "bun-plugin-dts": "^0.2.1",
     "bun-types": "^1.0.18-1",
     "eslint": "^8.56.0",

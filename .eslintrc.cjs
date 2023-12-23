@@ -14,6 +14,8 @@ module.exports = {
     ],
     'import/prefer-default-export': 'off',
     '@typescript-eslint/naming-convention': 'off',
+    '@typescript-eslint/no-shadow': 'off',
+    'jsx-a11y/control-has-associated-label': 'off',
     'react/jsx-props-no-spreading': 'off',
     'react/no-unstable-nested-components': 'off',
     'react/prop-types': 'off',
