@@ -5,6 +5,7 @@ import { ReactNode, useEffect, useRef, useState } from 'react'
 import { Colorblindly } from '~/components/Colorblindly'
 import { ColorblindlyKind } from '~/types'
 import { capitalize } from '~/utils'
+import './ColorblindlyDevtools.css'
 
 const colorblindlyKinds: ColorblindlyKind[] = [
   'normal',
@@ -45,30 +46,10 @@ export function ColorblindlyDevtools({
     <>
       <Colorblindly kind={selectedKind}>{children}</Colorblindly>
 
-      <div
-        style={{
-          zIndex: 9999,
-          position: 'fixed',
-          right: '2rem',
-          bottom: '2rem',
-        }}
-      >
+      <div className="react-colorblindly-devtolls__dropdown-menu-root">
         <button
           type="button"
-          style={{
-            all: 'unset',
-            position: 'absolute',
-            right: 0,
-            bottom: 0,
-            width: '3rem',
-            height: '3rem',
-            backgroundColor: 'rgb(15, 110, 240)',
-            borderRadius: '100%',
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-            cursor: 'pointer',
-          }}
+          className="react-colorblindly-devtolls__dropdown-menu-button"
           onClick={(event) => {
             event.stopPropagation()
             setIsVisible(!isVisible)
@@ -79,42 +60,21 @@ export function ColorblindlyDevtools({
         </button>
         <div
           onClick={(event) => event.stopPropagation()}
-          style={{
-            display: isVisible ? 'block' : 'none',
-            position: 'absolute',
-            right: '3rem',
-            bottom: '3rem',
-            padding: '8px',
-            minWidth: '160px',
-            backgroundColor: 'white',
-            boxShadow: '0px 0px 10px rgba(0,0,0,0.25)',
-            borderRadius: '8px',
-          }}
+          className="react-colorblindly-devtolls__dropdown-menu-content"
+          data-state={isVisible ? 'open' : 'closed'}
         >
-          <div role="group" style={{ color: 'black' }}>
+          <div role="group">
             {colorblindlyKinds.map((kind) => (
               <div
                 key={kind}
-                style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  padding: '6px',
-                  cursor: 'pointer',
-                }}
+                role="menuitem"
+                className="react-colorblindly-devtolls__dropdown-menu-item"
                 onClick={(event) => {
                   event.stopPropagation()
                   setSelectedKind(kind)
                 }}
               >
-                <span
-                  style={{
-                    width: '16px',
-                    display: 'flex',
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                    marginRight: '8px',
-                  }}
-                >
+                <span className="react-colorblindly-devtolls__dropdown-menu-item-icon">
                   {kind === selectedKind && (
                     <CheckIcon
                       width={16}
@@ -124,13 +84,7 @@ export function ColorblindlyDevtools({
                     />
                   )}
                 </span>
-                <span
-                  style={{
-                    fontSize: '0.875rem',
-                    fontWeight: 500,
-                    color: 'black',
-                  }}
-                >
+                <span className="react-colorblindly-devtolls__dropdown-menu-item-label">
                   {capitalize(kind)}
                 </span>
               </div>
