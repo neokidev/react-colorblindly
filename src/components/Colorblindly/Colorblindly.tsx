@@ -1,6 +1,6 @@
 import { ReactNode } from 'react'
-import { ColorblindlyKind } from '~/types'
-import { randomId } from '~/utils'
+import { ColorblindlyKind } from '../../types'
+import { randomId } from '../../utils'
 
 const filterMatrixValues: Record<
   Exclude<ColorblindlyKind, 'normal'>,

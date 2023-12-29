@@ -9,7 +9,7 @@ module.exports = {
     'import/no-extraneous-dependencies': [
       'error',
       {
-        devDependencies: ['./build.ts'],
+        devDependencies: ['./vite.config.ts'],
       },
     ],
     'import/prefer-default-export': 'off',
@@ -22,5 +22,5 @@ module.exports = {
     'react/require-default-props': 'off',
     'react/react-in-jsx-scope': 'off',
   },
-  ignorePatterns: ['node_modules', 'dist', '.eslintrc.cjs'],
+  ignorePatterns: ['node_modules', 'dist', '.eslintrc.cjs', 'vite.config.ts'],
 }

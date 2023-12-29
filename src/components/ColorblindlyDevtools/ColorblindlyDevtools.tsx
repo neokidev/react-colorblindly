@@ -1,10 +1,12 @@
 'use client'
 
+import * as Popover from '@radix-ui/react-popover'
+import * as RadioGroup from '@radix-ui/react-radio-group'
 import { CheckIcon, EyeIcon } from 'lucide-react'
-import { ReactNode, useEffect, useRef, useState } from 'react'
-import { Colorblindly } from '~/components/Colorblindly'
-import { ColorblindlyKind } from '~/types'
-import { capitalize } from '~/utils'
+import { ReactNode, useState } from 'react'
+import { ColorblindlyKind } from '../../types'
+import { capitalize } from '../../utils'
+import { Colorblindly } from '../Colorblindly'
 import './ColorblindlyDevtools.css'
 
 const colorblindlyKinds: ColorblindlyKind[] = [
@@ -27,71 +29,54 @@ export function ColorblindlyDevtools({
   children,
 }: ColorblindlyDevtoolsOptions) {
   const [selectedKind, setSelectedKind] = useState<ColorblindlyKind>('normal')
-  const [isVisible, setIsVisible] = useState(false)
-  const isVisibleRef = useRef(false)
-
-  useEffect(() => {
-    function closePopover() {
-      if (isVisibleRef.current) {
-        setIsVisible(false)
-        isVisibleRef.current = false
-      }
-    }
-
-    window.addEventListener('click', closePopover)
-    return () => window.removeEventListener('click', closePopover)
-  }, [])
 
   return (
-    <>
+    <div className="react-colorblindly-devtools__root">
       <Colorblindly kind={selectedKind}>{children}</Colorblindly>
-
-      <div className="react-colorblindly-devtolls__dropdown-menu-root">
-        <button
-          type="button"
-          className="react-colorblindly-devtolls__dropdown-menu-button"
-          onClick={(event) => {
-            event.stopPropagation()
-            setIsVisible(!isVisible)
-            isVisibleRef.current = !isVisibleRef.current
-          }}
-        >
-          <EyeIcon width={32} height={32} />
-        </button>
-        <div
-          onClick={(event) => event.stopPropagation()}
-          className="react-colorblindly-devtolls__dropdown-menu-content"
-          data-state={isVisible ? 'open' : 'closed'}
-        >
-          <div role="group">
-            {colorblindlyKinds.map((kind) => (
-              <div
-                key={kind}
-                role="menuitem"
-                className="react-colorblindly-devtolls__dropdown-menu-item"
-                onClick={(event) => {
-                  event.stopPropagation()
-                  setSelectedKind(kind)
-                }}
-              >
-                <span className="react-colorblindly-devtolls__dropdown-menu-item-icon">
-                  {kind === selectedKind && (
-                    <CheckIcon
-                      width={16}
-                      height={16}
-                      color="rgb(15, 110, 240)"
-                      strokeWidth={3}
-                    />
-                  )}
-                </span>
-                <span className="react-colorblindly-devtolls__dropdown-menu-item-label">
-                  {capitalize(kind)}
-                </span>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
-    </>
+      <Popover.Root>
+        <Popover.Trigger asChild>
+          <button
+            type="button"
+            className="react-colorblindly-devtools__popover-button"
+          >
+            <EyeIcon width={32} height={32} />
+          </button>
+        </Popover.Trigger>
+        <Popover.Portal>
+          <Popover.Content
+            className="react-colorblindly-devtools__popover-content"
+            sideOffset={5}
+          >
+            <RadioGroup.Root
+              defaultValue={colorblindlyKinds[0]}
+              aria-label="View density"
+              onValueChange={(value) =>
+                setSelectedKind(value as ColorblindlyKind)
+              }
+            >
+              {colorblindlyKinds.map((kind) => (
+                <div
+                  key={kind}
+                  style={{ display: 'flex', alignItems: 'center' }}
+                >
+                  <RadioGroup.Item
+                    className="react-colorblindly-devtools__popover-item"
+                    value={kind}
+                    id={kind}
+                  >
+                    <RadioGroup.Indicator className="react-colorblindly-devtools__popover-item-icon">
+                      <CheckIcon color="rgb(15, 110, 240)" strokeWidth={3} />
+                    </RadioGroup.Indicator>
+                    <span className="react-colorblindly-devtools__popover-item-label">
+                      {capitalize(kind)}
+                    </span>
+                  </RadioGroup.Item>
+                </div>
+              ))}
+            </RadioGroup.Root>
+          </Popover.Content>
+        </Popover.Portal>
+      </Popover.Root>
+    </div>
   )
 }
