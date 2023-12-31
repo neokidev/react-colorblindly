@@ -3,12 +3,12 @@
 import * as Popover from '@radix-ui/react-popover'
 import * as RadioGroup from '@radix-ui/react-radio-group'
 import DestyleCSS from '@react-scoped-css-reset/destyle'
-import { EyeIcon } from 'lucide-react'
 import { ReactNode, useState } from 'react'
 import { ColorblindlyKind } from '../../types'
 import { capitalize } from '../../utils'
 import { Colorblindly } from '../Colorblindly'
 import './ColorblindlyDevtools.css'
+import { EyeIcon } from './EyeIcon'
 
 const filterMatrixValues: Record<
   Exclude<ColorblindlyKind, 'normal'>,
@@ -95,7 +95,7 @@ export function ColorblindlyDevtools({
               type="button"
               className="react-colorblindly-devtools__popover-button"
             >
-              <EyeIcon width={32} height={32} />
+              <EyeIcon className="react-colorblindly-devtools__popover-button-icon" />
             </button>
           </Popover.Trigger>
         </DestyleCSS>

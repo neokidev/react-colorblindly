@@ -18,6 +18,11 @@
   align-items: center;
 }
 
+.react-colorblindly-devtools__popover-button-icon {
+  width: 2rem;
+  height: 2rem;
+}
+
 .react-colorblindly-devtools__popover-content {
   position: absolute;
   padding: 0.25rem;
