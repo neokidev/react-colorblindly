@@ -26,8 +26,8 @@
 .react-colorblindly-devtools__popover-content {
   position: absolute;
   padding: 0.25rem;
-  right: 3rem;
-  bottom: 3rem;
+  right: 1.5rem;
+  bottom: 3.5rem;
   min-width: 16rem;
   border: 0 solid #e5e7eb;
   border-width: 1px;
