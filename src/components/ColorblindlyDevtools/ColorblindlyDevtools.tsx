@@ -108,7 +108,7 @@ export function ColorblindlyDevtools({
             <DestyleCSS>
               <RadioGroup.Root
                 defaultValue={selectedKind}
-                aria-label="View density"
+                aria-label="View colorblindly"
                 onValueChange={(value) =>
                   setSelectedKind(value as ColorblindlyKind)
                 }
