@@ -11,7 +11,7 @@ import './ColorblindlyDevtools.css'
 import { EyeIcon } from './EyeIcon'
 
 const filterMatrixValues: Record<
-  Exclude<ColorblindlyKind, 'normal'>,
+  Exclude<ColorblindlyKind, 'trichromacy'>,
   string
 > = {
   achromatomaly:
@@ -39,8 +39,8 @@ interface ColorblindlyItem {
 
 const colorblindlyItems: ColorblindlyItem[] = [
   {
-    kind: 'normal',
-    description: 'Trichromacy',
+    kind: 'trichromacy',
+    description: 'Normal',
   },
   {
     kind: 'achromatomaly',
@@ -83,7 +83,8 @@ export interface ColorblindlyDevtoolsOptions {
 export function ColorblindlyDevtools({
   children,
 }: ColorblindlyDevtoolsOptions) {
-  const [selectedKind, setSelectedKind] = useState<ColorblindlyKind>('normal')
+  const [selectedKind, setSelectedKind] =
+    useState<ColorblindlyKind>('trichromacy')
 
   return (
     <div className="react-colorblindly-devtools__root">
@@ -121,7 +122,7 @@ export function ColorblindlyDevtools({
                   >
                     <div className="react-colorblindly-devtools__popover-item">
                       <div className="react-colorblindly-devtools__popover-preview">
-                        {kind !== 'normal' && (
+                        {kind !== 'trichromacy' && (
                           <svg
                             style={{
                               width: 0,
@@ -146,7 +147,7 @@ export function ColorblindlyDevtools({
                           className="rainbow-square"
                           style={{
                             filter:
-                              kind !== 'normal'
+                              kind !== 'trichromacy'
                                 ? `url(#react-colorblindly-devtools__${kind})`
                                 : undefined,
                           }}

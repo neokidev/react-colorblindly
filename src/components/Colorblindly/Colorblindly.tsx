@@ -3,7 +3,7 @@ import { ColorblindlyKind } from '../../types'
 import { randomId } from '../../utils'
 
 const filterMatrixValues: Record<
-  Exclude<ColorblindlyKind, 'normal'>,
+  Exclude<ColorblindlyKind, 'trichromacy'>,
   string
 > = {
   achromatomaly:
@@ -34,7 +34,7 @@ export function Colorblindly({ children, kind }: ColorblindlyProps) {
 
   return (
     <>
-      {kind !== 'normal' && (
+      {kind !== 'trichromacy' && (
         <svg style={{ width: 0, height: 0, position: 'absolute' }}>
           <defs>
             <filter id={filterId}>

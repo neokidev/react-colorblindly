@@ -1,5 +1,5 @@
 export type ColorblindlyKind =
-  | 'normal'
+  | 'trichromacy'
   | 'achromatomaly'
   | 'achromatopsia'
   | 'deuteranomaly'
