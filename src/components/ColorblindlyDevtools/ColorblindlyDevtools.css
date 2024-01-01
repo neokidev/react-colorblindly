@@ -18,6 +18,10 @@
   align-items: center;
 }
 
+.react-colorblindly-devtools__popover-button:hover {
+  background-color: rgb(27, 110, 243) !important;
+}
+
 .react-colorblindly-devtools__popover-button-icon {
   width: 2rem;
   height: 2rem;
