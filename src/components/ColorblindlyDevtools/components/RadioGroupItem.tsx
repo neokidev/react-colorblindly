@@ -1,6 +1,6 @@
 import * as RadioGroup from '@radix-ui/react-radio-group'
 import { ColorblindlyKind } from '../../../types'
-import { capitalize, filterMatrixValues } from '../../../utils'
+import { capitalize, filterMatrixValues, randomId } from '../../../utils'
 import { CheckIcon } from './CheckIcon'
 
 interface RadioGroupItemProps {
@@ -9,7 +9,7 @@ interface RadioGroupItemProps {
 }
 
 export function RadioGroupItem({ kind, description }: RadioGroupItemProps) {
-  const filterId = `react-colorblindly-devtools__${kind}`
+  const filterId = `react-colorblindly-devtools__${kind}__${randomId()}`
 
   return (
     <RadioGroup.Item
